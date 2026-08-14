@@ -457,13 +457,12 @@
   mobileMenu.querySelectorAll('a').forEach(a=> a.addEventListener('click', ()=> mobileMenu.classList.remove('open')));
 
   // Google Forms integration: submissions are also sent to your Google Form's responses.
-  // ⚠️ Replace the entry.XXXXXXXXX placeholders below with your form's real field IDs.
   const GOOGLE_FORM_ACTION = 'https://docs.google.com/forms/d/e/1FAIpQLScIj8-9BJlqxHhbNL6tGWjKElc1kNPKZ04aRN48Bj1C3Ad9JA/formResponse';
   const GOOGLE_FORM_ENTRY_IDS = {
-    name:    'entry.111111111', // TODO: replace with real entry ID for "Name"
-    email:   'entry.222222222', // TODO: replace with real entry ID for "Email"
-    looking: 'entry.333333333', // TODO: replace with real entry ID for "What are you looking for?"
-    details: 'entry.444444444'  // TODO: replace with real entry ID for "Tell us about the opportunity"
+    name:    'entry.653379976',
+    email:   'entry.2097975317',
+    looking: 'entry.2137013806',
+    details: 'entry.1184140993'
   };
 
   const form = document.getElementById('qualForm');

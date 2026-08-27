@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>[BRAND NAME] · AI Product Engineering &amp; Technology Partnerships</title>
+<title>Celestl · AI Product Engineering &amp; Technology Partnerships</title>
 <meta name="description" content="AI product engineering, automation, custom software and MVP development for founders, businesses, agencies and technology partners.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -206,6 +206,12 @@
   .footer-bottom{margin-top:0;padding:20px 0 44px;border-top:1px solid var(--border);font-family:var(--mono);font-size:11.5px;color:var(--text-faint);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
 
   @media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important;}}
+
+  #spline-showcase{padding:0;border-bottom:1px solid var(--border);position:relative;overflow:hidden;height:560px;background:var(--bg);}
+  #spline-showcase spline-viewer{width:100%;height:100%;display:block;}
+  @media (max-width:768px){#spline-showcase{height:380px;}}
+  .spline-loading{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;font-family:var(--mono);font-size:12.5px;color:var(--text-faint);letter-spacing:.04em;}
+  .spline-dot{width:8px;height:8px;border-radius:50%;background:var(--grad);animation:nodePulse 1.4s ease-in-out infinite;}
 </style>
 </head>
 <body>
@@ -215,7 +221,7 @@
 <header id="siteHeader">
   <div class="wrap">
     <nav>
-      <a href="#top" class="brand"><span class="mark"></span>[BRAND NAME]</a>
+      <a href="#top" class="brand"><span class="mark"></span>Celestl</a>
       <div class="nav-links">
         <a href="#expertise">Expertise</a>
         <a href="#process">Process</a>
@@ -409,11 +415,18 @@
 
 </main>
 
+<section id="spline-showcase">
+  <div class="spline-loading" id="splineLoading">
+    <span class="spline-dot"></span>
+    <span>Loading experience</span>
+  </div>
+</section>
+
 <footer>
   <div class="wrap">
     <div class="footer-grid">
       <div class="footer-about">
-        <div class="brand"><span class="mark"></span>[BRAND NAME]</div>
+        <div class="brand"><span class="mark"></span>Celestl</div>
         <p>AI product engineering and automation partner for founders, agencies and businesses.</p>
       </div>
 
@@ -438,7 +451,7 @@
     </div>
 
     <div class="footer-bottom">
-      <span>© 2026 [BRAND NAME]. All rights reserved.</span>
+      <span>© 2026 Celestl. All rights reserved.</span>
       <span>AI Product Engineering · Automation · Software</span>
     </div>
   </div>
@@ -496,6 +509,34 @@
     });
   }, {threshold:0.15});
   offerEls.forEach(el=> offerIO.observe(el));
+
+  // lazy-load the Spline 3D scene only once it's about to scroll into view
+  const splineSection = document.getElementById('spline-showcase');
+  if(splineSection){
+    const splineIO = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          const script = document.createElement('script');
+          script.type = 'module';
+          script.src = 'https://unpkg.com/@splinetool/viewer@latest/build/spline-viewer.js';
+          document.head.appendChild(script);
+
+          const viewer = document.createElement('spline-viewer');
+          viewer.setAttribute('url', 'https://prod.spline.design/X-SH9o8gCZBV7fdB/scene.splinecode');
+          viewer.style.width = '100%';
+          viewer.style.height = '100%';
+          viewer.style.display = 'block';
+
+          const loadingEl = document.getElementById('splineLoading');
+          if(loadingEl) loadingEl.remove();
+          splineSection.appendChild(viewer);
+
+          splineIO.disconnect();
+        }
+      });
+    }, { rootMargin: '400px 0px', threshold: 0 });
+    splineIO.observe(splineSection);
+  }
 </script>
 
 </body>

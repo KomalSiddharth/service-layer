@@ -47,6 +47,14 @@
   @keyframes floatB{0%,100%{transform:translate(0,0);}50%{transform:translate(-50px,60px);}}
 
   .grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .hero h1 .grad-text{
+    background:linear-gradient(120deg, var(--amber) 0%, var(--blue) 45%, var(--amber) 90%);
+    background-size:200% auto;
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    animation:heroShimmer 5s ease-in-out infinite;
+    filter:drop-shadow(0 0 22px rgba(255,143,92,.22)) drop-shadow(0 0 22px rgba(77,140,255,.22));
+  }
+  @keyframes heroShimmer{0%,100%{background-position:0% 50%;}50%{background-position:100% 50%;}}
 
   .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);font-weight:500;display:inline-flex;align-items:center;gap:8px;}
   .eyebrow .brk{color:var(--text-faint);}
@@ -160,25 +168,29 @@
   .build-card h3{font-family:var(--display);font-weight:700;font-size:16px;margin-bottom:8px;}
   .build-card p{color:var(--text-soft);font-size:13.5px;line-height:1.55;}
 
-  .case-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:12px;}
-  @media (max-width:1000px){.case-grid{grid-template-columns:repeat(2,1fr);}}
-  @media (max-width:560px){.case-grid{grid-template-columns:1fr;}}
-  .case-card{border:1px solid var(--border);border-radius:8px;overflow:hidden;background:var(--surface);transition:border-color .3s ease, transform .3s ease;}
-  .case-card.in{animation:cardReveal .6s cubic-bezier(.2,.8,.2,1) both;}
-  .case-card:hover{border-color:var(--border-strong);transform:translateY(-4px);}
-  .case-visual{height:130px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;}
-  .case-visual::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);background-size:16px 16px;}
-  .case-visual-icon{position:relative;z-index:1;width:48px;height:48px;border-radius:10px;background:var(--grad);display:flex;align-items:center;justify-content:center;box-shadow:0 10px 24px -8px rgba(77,140,255,.4);}
-  .case-visual-icon svg{width:55%;height:55%;}
-  .case-card:hover .case-visual-icon{transform:scale(1.08) rotate(6deg);transition:transform .4s cubic-bezier(.2,.8,.2,1);}
-  .grad-visual-1{background:radial-gradient(circle at 30% 30%, rgba(232,193,112,.3), transparent 60%), var(--bg-alt);}
-  .grad-visual-2{background:radial-gradient(circle at 70% 40%, rgba(77,140,255,.32), transparent 60%), var(--bg-alt);}
-  .grad-visual-3{background:radial-gradient(circle at 40% 70%, rgba(255,143,92,.28), transparent 60%), var(--bg-alt);}
-  .grad-visual-4{background:radial-gradient(circle at 60% 30%, rgba(77,140,255,.25), rgba(255,143,92,.18) 70%, transparent 90%), var(--bg-alt);}
-  .case-body{padding:18px 20px 20px;}
+  .case-scroll-wrap{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 6px 18px;-webkit-overflow-scrolling:touch;}
+  .case-scroll-wrap::-webkit-scrollbar{height:6px;}
+  .case-scroll-wrap::-webkit-scrollbar-thumb{background:var(--border-strong);border-radius:4px;}
+  .case-slide{flex:0 0 82%;max-width:520px;scroll-snap-align:center;border:1px solid var(--border);border-radius:14px;overflow:hidden;background:var(--surface);transition:transform .45s cubic-bezier(.2,.8,.2,1), box-shadow .45s ease, border-color .45s ease;}
+  @media (min-width:700px){.case-slide{flex:0 0 60%;}}
+  @media (min-width:1100px){.case-slide{flex:0 0 44%;}}
+  .case-slide.active{transform:scale(1.02);border-color:var(--border-strong);box-shadow:0 24px 60px -24px rgba(77,140,255,.4),0 24px 60px -24px rgba(255,143,92,.22);}
+  .case-slide-visual{position:relative;height:230px;overflow:hidden;}
+  .case-slide-visual::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);background-size:18px 18px;}
+  .glow-visual-1{background:radial-gradient(circle at 20% 20%, rgba(255,143,92,.55), transparent 55%),radial-gradient(circle at 80% 70%, rgba(77,140,255,.5), transparent 55%),var(--bg-alt);}
+  .glow-visual-2{background:radial-gradient(circle at 75% 25%, rgba(77,140,255,.55), transparent 55%),radial-gradient(circle at 25% 75%, rgba(124,92,255,.4), transparent 55%),var(--bg-alt);}
+  .glow-visual-3{background:radial-gradient(circle at 30% 75%, rgba(255,143,92,.5), transparent 55%),radial-gradient(circle at 75% 25%, rgba(77,140,255,.4), transparent 55%),var(--bg-alt);}
+  .glow-visual-4{background:radial-gradient(circle at 70% 70%, rgba(37,208,138,.4), transparent 55%),radial-gradient(circle at 25% 25%, rgba(77,140,255,.45), transparent 55%),var(--bg-alt);}
+  .case-slide-actions{position:absolute;right:20px;bottom:20px;left:20px;display:flex;flex-direction:column;gap:8px;z-index:2;}
+  .case-action-row{display:flex;align-items:center;gap:10px;background:rgba(10,11,16,.62);backdrop-filter:blur(8px);border:1px solid var(--border-strong);border-radius:10px;padding:9px 13px;font-size:12.5px;color:var(--text);font-weight:500;transform:translateX(10px);opacity:.75;transition:transform .4s ease, opacity .4s ease;}
+  .case-slide.active .case-action-row{transform:translateX(0);opacity:1;}
+  .case-slide.active .case-action-row:nth-child(2){transition-delay:.06s;}
+  .case-slide.active .case-action-row:nth-child(3){transition-delay:.12s;}
+  .case-action-row .dot{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;color:#fff;}
+  .case-slide-body{padding:20px 22px 22px;}
   .case-cat{font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--blue);display:block;margin-bottom:8px;}
-  .case-card h3{font-family:var(--display);font-weight:700;font-size:16px;margin-bottom:8px;}
-  .case-card p{font-size:13px;color:var(--text-soft);line-height:1.55;}
+  .case-slide-body h3{font-family:var(--display);font-weight:700;font-size:17px;margin-bottom:8px;}
+  .case-slide-body p{font-size:13px;color:var(--text-soft);line-height:1.55;}
 
   /* CONTACT */
   .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;}
@@ -199,7 +211,8 @@
   .direct-contact .item span{font-size:14.5px;color:var(--text);}
   .direct-contact .item a.go{font-family:var(--mono);font-size:12px;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:600;}
 
-  footer{padding:64px 0 0;border-bottom:none;background:#000000;}
+  footer{padding:64px 0 0;border-bottom:none;background:#000000;position:relative;}
+  footer::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg, transparent, var(--amber) 25%, var(--blue) 75%, transparent);opacity:.5;}
   .footer-grid{display:grid;grid-template-columns:1.4fr .8fr .8fr 1.4fr;gap:40px;padding-bottom:40px;}
   @media (max-width:900px){.footer-grid{grid-template-columns:repeat(2,1fr);}}
   @media (max-width:560px){.footer-grid{grid-template-columns:1fr;gap:32px;}}
@@ -215,6 +228,20 @@
   .footer-bottom{margin-top:0;padding:20px 0 44px;border-top:1px solid var(--border);font-family:var(--mono);font-size:11.5px;color:var(--text-faint);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
 
   @media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important;}}
+
+  /* FAQ */
+  .faq-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:60px;align-items:start;}
+  @media (max-width:900px){.faq-grid{grid-template-columns:1fr;gap:36px;}}
+  .faq-contact{margin-top:26px;}
+  .faq-contact-title{font-family:var(--display);font-weight:700;font-size:16px;margin-bottom:8px;}
+  .faq-contact-text{font-size:14px;color:var(--text-soft);line-height:1.6;max-width:340px;}
+  .faq-item{border:1px solid var(--border);border-radius:10px;margin-bottom:12px;overflow:hidden;transition:border-color .3s ease;}
+  .faq-item:hover{border-color:var(--border-strong);}
+  .faq-q{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 22px;cursor:pointer;font-family:var(--display);font-weight:600;font-size:15px;}
+  .faq-toggle{font-family:var(--display);font-size:20px;color:var(--text-faint);flex-shrink:0;transition:transform .3s ease, color .3s ease;line-height:1;}
+  .faq-item.open .faq-toggle{transform:rotate(45deg);color:var(--blue);}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+  .faq-a p{padding:0 22px 20px;font-size:13.5px;color:var(--text-soft);line-height:1.65;max-width:520px;}
 
   #spline-showcase{padding:0;border-bottom:1px solid var(--border);position:relative;overflow:hidden;height:760px;background:var(--bg);}
   #spline-showcase spline-viewer{width:100%;height:100%;display:block;transform:scale(1.28);transform-origin:center center;}
@@ -235,6 +262,7 @@
       <div class="nav-links">
         <a href="#expertise">Expertise</a>
         <a href="#work">Work</a>
+        <a href="#faq">FAQ</a>
         <a href="#contact">Contact</a>
       </div>
       <div style="display:flex;align-items:center;gap:16px;">
@@ -249,6 +277,7 @@
   <button class="mobile-close" id="mobileClose">&times;</button>
   <a href="#expertise">Expertise</a>
   <a href="#work">Work</a>
+  <a href="#faq">FAQ</a>
   <a href="#qualForm" class="grad-text">Start a Project →</a>
 </div>
 
@@ -350,6 +379,7 @@
   </section>
 
   <!-- OUR PROCESS -->
+  <!-- OUR PROCESS -->
   <section id="work">
     <div class="wrap">
       <div class="section-head">
@@ -358,70 +388,108 @@
         <p class="lead" style="margin-top:14px;">Example concepts below (illustrative only). Real case studies are coming soon as projects wrap up.</p>
       </div>
 
-      <div class="case-grid">
-        <div class="case-card">
-          <div class="case-visual grad-visual-1">
-            <span class="case-visual-icon"><svg viewBox="0 0 24 24" fill="none"><rect x="6" y="9" width="12" height="10" rx="2.5" stroke="white" stroke-width="1.5"/><circle cx="9.6" cy="14" r="1.1" fill="white"/><circle cx="14.4" cy="14" r="1.1" fill="white"/><line x1="12" y1="9" x2="12" y2="5.5" stroke="white" stroke-width="1.5"/><circle cx="12" cy="4.3" r="1.1" stroke="white" stroke-width="1.3"/></svg></span>
+      <div class="case-scroll-wrap" id="caseScrollWrap">
+        <div class="case-slide">
+          <div class="case-slide-visual glow-visual-1">
+            <div class="case-slide-actions">
+              <div class="case-action-row"><span class="dot" style="background:#7C5CFF;">◆</span>Qualify Lead</div>
+              <div class="case-action-row"><span class="dot" style="background:#25D08A;">✓</span>Draft Follow-up</div>
+              <div class="case-action-row"><span class="dot" style="background:#FF8F5C;">➜</span>Book Meeting</div>
+            </div>
           </div>
-          <div class="case-body">
+          <div class="case-slide-body">
             <span class="case-cat">AI Agent · CRM</span>
             <h3>AI Sales Copilot</h3>
             <p>An agent that qualifies leads, drafts follow-ups and books meetings automatically.</p>
           </div>
         </div>
-        <div class="case-card">
-          <div class="case-visual grad-visual-2">
-            <span class="case-visual-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2 L14.2 9 L21 12 L14.2 15 L12 22 L9.8 15 L3 12 L9.8 9 Z" stroke="white" stroke-width="1.5" stroke-linejoin="round"/></svg></span>
+
+        <div class="case-slide">
+          <div class="case-slide-visual glow-visual-2">
+            <div class="case-slide-actions">
+              <div class="case-action-row"><span class="dot" style="background:#4D8CFF;">▤</span>Scan Document</div>
+              <div class="case-action-row"><span class="dot" style="background:#FFC94D;">?</span>Extract Answer</div>
+              <div class="case-action-row"><span class="dot" style="background:#25D08A;">§</span>Cite Source</div>
+            </div>
           </div>
-          <div class="case-body">
+          <div class="case-slide-body">
             <span class="case-cat">AI Product · RAG</span>
             <h3>Document Intelligence Engine</h3>
             <p>Turns thousands of PDFs into instant, searchable answers.</p>
           </div>
         </div>
-        <div class="case-card">
-          <div class="case-visual grad-visual-3">
-            <span class="case-visual-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12a8 8 0 0 1 14.5-4.6" stroke="white" stroke-width="1.5" stroke-linecap="round"/><path d="M18.5 4.5v3.3h-3.3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 12a8 8 0 0 1-14.5 4.6" stroke="white" stroke-width="1.5" stroke-linecap="round"/><path d="M5.5 19.5v-3.3h3.3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+
+        <div class="case-slide">
+          <div class="case-slide-visual glow-visual-3">
+            <div class="case-slide-actions">
+              <div class="case-action-row"><span class="dot" style="background:#FF8F5C;">⇄</span>Sync CRM</div>
+              <div class="case-action-row"><span class="dot" style="background:#4D8CFF;">✉</span>Send Update</div>
+              <div class="case-action-row"><span class="dot" style="background:#7C5CFF;">⚙</span>Trigger Workflow</div>
+            </div>
           </div>
-          <div class="case-body">
+          <div class="case-slide-body">
             <span class="case-cat">Automation · Workflows</span>
             <h3>Ops Automation Suite</h3>
             <p>Connects CRM, email and calendar into one self-running pipeline.</p>
           </div>
         </div>
-        <div class="case-card">
-          <div class="case-visual grad-visual-4">
-            <span class="case-visual-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 4 L20 8.5 L12 13 L4 8.5 Z" stroke="white" stroke-width="1.5" stroke-linejoin="round"/><path d="M4 13 L12 17.5 L20 13" stroke="white" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></svg></span>
+
+        <div class="case-slide">
+          <div class="case-slide-visual glow-visual-4">
+            <div class="case-slide-actions">
+              <div class="case-action-row"><span class="dot" style="background:#25D08A;">☎</span>Answer Call</div>
+              <div class="case-action-row"><span class="dot" style="background:#4D8CFF;">◎</span>Understand Intent</div>
+              <div class="case-action-row"><span class="dot" style="background:#FF8F5C;">📅</span>Book Appointment</div>
+            </div>
           </div>
-          <div class="case-body">
-            <span class="case-cat">SaaS · Finance</span>
-            <h3>Fintech Analytics MVP</h3>
-            <p>A dashboard-first MVP that turned a spreadsheet into a fundable product.</p>
-          </div>
-        </div>
-        <div class="case-card">
-          <div class="case-visual grad-visual-1">
-            <span class="case-visual-icon"><svg viewBox="0 0 24 24" fill="none"><rect x="9" y="3" width="6" height="11" rx="3" stroke="white" stroke-width="1.5"/><path d="M6 11a6 6 0 0 0 12 0" stroke="white" stroke-width="1.5" stroke-linecap="round"/><line x1="12" y1="17" x2="12" y2="21" stroke="white" stroke-width="1.5"/><line x1="9" y1="21" x2="15" y2="21" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg></span>
-          </div>
-          <div class="case-body">
+          <div class="case-slide-body">
             <span class="case-cat">Voice AI</span>
             <h3>AI Voice Concierge</h3>
             <p>Answers calls, understands intent, and routes or books automatically.</p>
           </div>
         </div>
-        <div class="case-card">
-          <div class="case-visual grad-visual-2">
-            <span class="case-visual-icon"><svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="20" r="1.3" stroke="white" stroke-width="1.4"/><circle cx="17" cy="20" r="1.3" stroke="white" stroke-width="1.4"/><path d="M3 4h2l2.2 11.2a2 2 0 0 0 2 1.6h7.6a2 2 0 0 0 2-1.6L20.5 8H6" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          </div>
-          <div class="case-body">
-            <span class="case-cat">E-commerce</span>
-            <h3>Shopify Growth Engine</h3>
-            <p>Automated inventory sync and personalized product recommendations.</p>
-          </div>
-        </div>
       </div>
 
       <a href="#qualForm" class="btn btn-ghost" style="margin-top:32px;">Request Examples <span class="arrow">→</span></a>
+    </div>
+  </section>
+
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="wrap faq-grid">
+      <div class="faq-left">
+        <div class="eyebrow"><span class="brk">[</span> FAQ <span class="brk">]</span></div>
+        <h2 class="h2" style="margin-top:16px;">Frequently asked questions</h2>
+        <div class="faq-contact">
+          <p class="faq-contact-title">Got any questions?</p>
+          <p class="faq-contact-text">Let us know! Reach out and our team will get right back to you.</p>
+        </div>
+        <a href="#qualForm" class="btn btn-primary" style="margin-top:24px;">Contact us <span class="arrow">→</span></a>
+      </div>
+
+      <div class="faq-right" id="faqList">
+        <div class="faq-item">
+          <div class="faq-q">What does Celestl actually do?<span class="faq-toggle">+</span></div>
+          <div class="faq-a"><p>We're a technical execution partner. You bring the opportunity, we handle the engineering — AI products, agents, automation, SaaS, MVPs and custom software.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Which technologies do you work with?<span class="faq-toggle">+</span></div>
+          <div class="faq-a"><p>OpenAI &amp; LLMs, Python, FastAPI, React, Next.js, n8n, PostgreSQL, vector databases and modern cloud infrastructure, chosen based on what your project actually needs.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Can agencies and consultants work with you?<span class="faq-toggle">+</span></div>
+          <div class="faq-a"><p>Yes. We can operate as your white-label technical team behind the scenes, or as a referral/delivery partner on client projects.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Is my idea and data kept confidential?<span class="faq-toggle">+</span></div>
+          <div class="faq-a"><p>Yes. We can work under NDA where needed, and confidential client work is never shown publicly without permission.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">What kind of support do you offer after launch?<span class="faq-toggle">+</span></div>
+          <div class="faq-a"><p>Ongoing engagements, retainers and extended engineering support are available once your product is live, not just one-off delivery.</p></div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -553,7 +621,7 @@
   });
 
   // staggered scroll reveal, scoped only to the offerings section
-  const offerEls = document.querySelectorAll('#expertise .build-card, #work .case-card');
+  const offerEls = document.querySelectorAll('#expertise .build-card');
   const offerIO = new IntersectionObserver((entries)=>{
     entries.forEach((entry, idx)=>{
       if(entry.isIntersecting){
@@ -563,6 +631,30 @@
     });
   }, {threshold:0.15});
   offerEls.forEach(el=> offerIO.observe(el));
+
+  // case-study carousel: whichever slide is centered in the scroll container gets the "active" glow
+  const caseWrap = document.getElementById('caseScrollWrap');
+  if(caseWrap){
+    const caseSlides = caseWrap.querySelectorAll('.case-slide');
+    const caseIO = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        entry.target.classList.toggle('active', entry.isIntersecting && entry.intersectionRatio > 0.6);
+      });
+    }, { root: caseWrap, threshold: [0, 0.6, 1] });
+    caseSlides.forEach(slide=> caseIO.observe(slide));
+    if(caseSlides[0]) caseSlides[0].classList.add('active');
+  }
+
+  // FAQ accordion
+  document.querySelectorAll('#faqList .faq-item').forEach(item=>{
+    const q = item.querySelector('.faq-q');
+    const a = item.querySelector('.faq-a');
+    q.addEventListener('click', ()=>{
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('#faqList .faq-item').forEach(i=>{ i.classList.remove('open'); i.querySelector('.faq-a').style.maxHeight = null; });
+      if(!isOpen){ item.classList.add('open'); a.style.maxHeight = a.scrollHeight + 'px'; }
+    });
+  });
 
   // lazy-load the Spline 3D scene only once it's about to scroll into view
   const splineSection = document.getElementById('spline-showcase');

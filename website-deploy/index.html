@@ -207,11 +207,12 @@
 
   @media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important;}}
 
-  #spline-showcase{padding:0;border-bottom:1px solid var(--border);position:relative;overflow:hidden;height:560px;background:var(--bg);}
-  #spline-showcase spline-viewer{width:100%;height:100%;display:block;}
-  @media (max-width:768px){#spline-showcase{height:380px;}}
-  .spline-loading{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;font-family:var(--mono);font-size:12.5px;color:var(--text-faint);letter-spacing:.04em;}
+  #spline-showcase{padding:0;border-bottom:1px solid var(--border);position:relative;overflow:hidden;height:760px;background:var(--bg);}
+  #spline-showcase spline-viewer{width:100%;height:100%;display:block;transform:scale(1.28);transform-origin:center center;}
+  @media (max-width:768px){#spline-showcase{height:480px;}}
+  .spline-loading{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;font-family:var(--mono);font-size:12.5px;color:var(--text-faint);letter-spacing:.04em;z-index:1;}
   .spline-dot{width:8px;height:8px;border-radius:50%;background:var(--grad);animation:nodePulse 1.4s ease-in-out infinite;}
+  .spline-badge-cover{position:absolute;bottom:0;right:0;width:170px;height:52px;background:var(--bg);z-index:2;}
 </style>
 </head>
 <body>
@@ -340,35 +341,78 @@
   </section>
 
   <!-- OUR PROCESS -->
-  <section id="process">
+  <section id="work">
     <div class="wrap">
-      <div class="section-head" style="text-align:center;margin-left:auto;margin-right:auto;">
-        <div class="eyebrow" style="justify-content:center;display:flex;"><span class="brk">[</span> Process <span class="brk">]</span></div>
-        <h2 class="h2" style="margin-top:14px;">A clear path from idea to impact.</h2>
+      <div class="section-head">
+        <div class="eyebrow"><span class="brk">[</span> Case Studies <span class="brk">]</span></div>
+        <h2 class="h2" style="margin-top:14px;">A few things we can build.</h2>
+        <p class="lead" style="margin-top:14px;">Example concepts below (illustrative only). Real case studies are coming soon as projects wrap up.</p>
       </div>
 
-      <div class="process-track" id="processTrack">
-        <div class="process-step">
-          <span class="process-circle"><svg viewBox="0 0 24 24" fill="none"><circle cx="10" cy="10" r="6" stroke="white" stroke-width="1.6"/><line x1="15" y1="15" x2="20" y2="20" stroke="white" stroke-width="1.6" stroke-linecap="round"/></svg></span>
-          <span class="process-num">01</span><h3>Discover</h3><p>We understand your problem, users and goals.</p>
+      <div class="case-grid">
+        <div class="case-card">
+          <div class="case-visual grad-visual-1">
+            <span class="case-visual-icon"><svg viewBox="0 0 24 24" fill="none"><rect x="6" y="9" width="12" height="10" rx="2.5" stroke="white" stroke-width="1.5"/><circle cx="9.6" cy="14" r="1.1" fill="white"/><circle cx="14.4" cy="14" r="1.1" fill="white"/><line x1="12" y1="9" x2="12" y2="5.5" stroke="white" stroke-width="1.5"/><circle cx="12" cy="4.3" r="1.1" stroke="white" stroke-width="1.3"/></svg></span>
+          </div>
+          <div class="case-body">
+            <span class="case-cat">AI Agent · CRM</span>
+            <h3>AI Sales Copilot</h3>
+            <p>An agent that qualifies leads, drafts follow-ups and books meetings automatically.</p>
+          </div>
         </div>
-        <div class="process-step">
-          <span class="process-circle"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="7.5" stroke="white" stroke-width="1.5"/><circle cx="12" cy="12" r="2.6" fill="white"/></svg></span>
-          <span class="process-num">02</span><h3>Define</h3><p>We plan the solution, technology and architecture.</p>
+        <div class="case-card">
+          <div class="case-visual grad-visual-2">
+            <span class="case-visual-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2 L14.2 9 L21 12 L14.2 15 L12 22 L9.8 15 L3 12 L9.8 9 Z" stroke="white" stroke-width="1.5" stroke-linejoin="round"/></svg></span>
+          </div>
+          <div class="case-body">
+            <span class="case-cat">AI Product · RAG</span>
+            <h3>Document Intelligence Engine</h3>
+            <p>Turns thousands of PDFs into instant, searchable answers.</p>
+          </div>
         </div>
-        <div class="process-step">
-          <span class="process-circle"><svg viewBox="0 0 24 24" fill="none"><path d="M12 4 L20 8.5 L12 13 L4 8.5 Z" stroke="white" stroke-width="1.5" stroke-linejoin="round"/><path d="M4 13 L12 17.5 L20 13" stroke="white" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></svg></span>
-          <span class="process-num">03</span><h3>Build</h3><p>We design, develop and integrate intelligent systems.</p>
+        <div class="case-card">
+          <div class="case-visual grad-visual-3">
+            <span class="case-visual-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12a8 8 0 0 1 14.5-4.6" stroke="white" stroke-width="1.5" stroke-linecap="round"/><path d="M18.5 4.5v3.3h-3.3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 12a8 8 0 0 1-14.5 4.6" stroke="white" stroke-width="1.5" stroke-linecap="round"/><path d="M5.5 19.5v-3.3h3.3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </div>
+          <div class="case-body">
+            <span class="case-cat">Automation · Workflows</span>
+            <h3>Ops Automation Suite</h3>
+            <p>Connects CRM, email and calendar into one self-running pipeline.</p>
+          </div>
         </div>
-        <div class="process-step">
-          <span class="process-circle"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3 C15 6 15 12 12 17 C9 12 9 6 12 3 Z" stroke="white" stroke-width="1.5" stroke-linejoin="round"/><line x1="9" y1="17" x2="7" y2="21" stroke="white" stroke-width="1.5" stroke-linecap="round"/><line x1="15" y1="17" x2="17" y2="21" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg></span>
-          <span class="process-num">04</span><h3>Launch</h3><p>We deploy, test and ensure everything works.</p>
+        <div class="case-card">
+          <div class="case-visual grad-visual-4">
+            <span class="case-visual-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 4 L20 8.5 L12 13 L4 8.5 Z" stroke="white" stroke-width="1.5" stroke-linejoin="round"/><path d="M4 13 L12 17.5 L20 13" stroke="white" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></svg></span>
+          </div>
+          <div class="case-body">
+            <span class="case-cat">SaaS · Finance</span>
+            <h3>Fintech Analytics MVP</h3>
+            <p>A dashboard-first MVP that turned a spreadsheet into a fundable product.</p>
+          </div>
         </div>
-        <div class="process-step">
-          <span class="process-circle"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12a8 8 0 0 1 14.5-4.6" stroke="white" stroke-width="1.5" stroke-linecap="round"/><path d="M18.5 4.5v3.3h-3.3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 12a8 8 0 0 1-14.5 4.6" stroke="white" stroke-width="1.5" stroke-linecap="round"/><path d="M5.5 19.5v-3.3h3.3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          <span class="process-num">05</span><h3>Iterate</h3><p>We continuously improve and scale with you.</p>
+        <div class="case-card">
+          <div class="case-visual grad-visual-1">
+            <span class="case-visual-icon"><svg viewBox="0 0 24 24" fill="none"><rect x="9" y="3" width="6" height="11" rx="3" stroke="white" stroke-width="1.5"/><path d="M6 11a6 6 0 0 0 12 0" stroke="white" stroke-width="1.5" stroke-linecap="round"/><line x1="12" y1="17" x2="12" y2="21" stroke="white" stroke-width="1.5"/><line x1="9" y1="21" x2="15" y2="21" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          </div>
+          <div class="case-body">
+            <span class="case-cat">Voice AI</span>
+            <h3>AI Voice Concierge</h3>
+            <p>Answers calls, understands intent, and routes or books automatically.</p>
+          </div>
+        </div>
+        <div class="case-card">
+          <div class="case-visual grad-visual-2">
+            <span class="case-visual-icon"><svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="20" r="1.3" stroke="white" stroke-width="1.4"/><circle cx="17" cy="20" r="1.3" stroke="white" stroke-width="1.4"/><path d="M3 4h2l2.2 11.2a2 2 0 0 0 2 1.6h7.6a2 2 0 0 0 2-1.6L20.5 8H6" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </div>
+          <div class="case-body">
+            <span class="case-cat">E-commerce</span>
+            <h3>Shopify Growth Engine</h3>
+            <p>Automated inventory sync and personalized product recommendations.</p>
+          </div>
         </div>
       </div>
+
+      <a href="#qualForm" class="btn btn-ghost" style="margin-top:32px;">Request Examples <span class="arrow">→</span></a>
     </div>
   </section>
 
@@ -420,6 +464,7 @@
     <span class="spline-dot"></span>
     <span>Loading experience</span>
   </div>
+  <div class="spline-badge-cover"></div>
 </section>
 
 <footer>

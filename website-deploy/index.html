@@ -100,6 +100,12 @@
   }
   .dot{width:7px; height:7px; border-radius:50%; background:var(--accent-green);}
   .grad-text{background:var(--brand-grad); -webkit-background-clip:text; background-clip:text; color:transparent;}
+  .hero h1 .line{display:block; opacity:0; transform:translateY(26px); animation:heroLineIn .8s cubic-bezier(.2,.8,.2,1) forwards;}
+  .hero h1 .line:nth-child(2){animation-delay:.16s;}
+  @keyframes heroLineIn{to{opacity:1; transform:translateY(0);}}
+  @media (prefers-reduced-motion: reduce){
+    .hero h1 .line{opacity:1; transform:none; animation:none;}
+  }
   .hero h1{
     font-size:clamp(36px, 5.4vw, 62px);
     line-height:1.1;
@@ -455,7 +461,7 @@
   <div class="hero-glow-2"></div>
   <div class="wrap">
     <div class="badge"><span class="dot"></span> Open for New Projects</div>
-    <h1>You bring the opportunity,<br><span class="grad-text">we build the technology.</span></h1>
+    <h1><span class="line">You bring the opportunity,</span><span class="line grad-text">we build the technology.</span></h1>
     <p>We turn ideas, business problems and AI opportunities into production-ready products, intelligent automations and custom software.</p>
     <p class="hero-subline">Your technical execution partner, from concept to launch.</p>
     <div class="btn-row">

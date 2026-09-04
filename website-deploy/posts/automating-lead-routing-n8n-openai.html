@@ -127,6 +127,12 @@
   .post-body ul{margin:0 0 18px 22px;}
   .post-body li{font-size:15.5px; line-height:1.75; color:var(--ink-soft); margin-bottom:8px;}
   .post-body strong{color:var(--ink); font-weight:700;}
+  .post-image{
+    width:100%; height:320px; border-radius:14px; margin-bottom:8px;
+    background-size:cover; background-position:center;
+    background-color:var(--bg-soft); border:1px solid var(--line);
+  }
+  @media (max-width:700px){ .post-image{height:200px;} }
   .post-cta{
     margin:60px 0 90px; padding:40px; border-radius:16px; text-align:center;
     background:var(--bg-soft); border:1px solid var(--line);
@@ -149,6 +155,7 @@
   <a href="../blog.html" class="back-link">&larr; Back to blog</a>
   <div><span class="blog-tag accent">Automation</span></div>
   <h1 class="post-title">Automating Lead Routing with n8n and OpenAI: A Full Breakdown</h1>
+  <div class="post-image" style="background-image:url('../assets/images/posts/automating-lead-routing-n8n-openai.jpg')"></div>
   <div class="post-body">
 
     <p>Most businesses lose time in the same place: someone has to read every inbound lead, figure out what they're asking for, decide who should handle it, and then manually forward it along. It works fine at ten leads a week. It quietly falls apart at fifty.</p>

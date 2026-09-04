@@ -103,6 +103,13 @@
   .hero h1 .line{display:block; opacity:0; transform:translateY(26px); animation:heroLineIn .8s cubic-bezier(.2,.8,.2,1) forwards;}
   .hero h1 .line:nth-child(2){animation-delay:.16s;}
   @keyframes heroLineIn{to{opacity:1; transform:translateY(0);}}
+  .hero h1 .grad-text{
+    background:linear-gradient(120deg, var(--brand-orange) 0%, var(--brand-blue) 45%, var(--brand-orange) 90%);
+    background-size:200% auto;
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    animation:heroLineIn .8s cubic-bezier(.2,.8,.2,1) forwards, heroShimmer 5s ease-in-out .9s infinite;
+  }
+  @keyframes heroShimmer{0%,100%{background-position:0% 50%;}50%{background-position:100% 50%;}}
   @media (prefers-reduced-motion: reduce){
     .hero h1 .line{opacity:1; transform:none; animation:none;}
   }
@@ -224,6 +231,9 @@
   .visual-3{background:radial-gradient(circle at 30% 75%, rgba(255,143,92,.32), transparent 55%), radial-gradient(circle at 75% 20%, rgba(77,140,255,.32), transparent 55%), #0c0c0c;}
   .visual-4{background:radial-gradient(circle at 70% 70%, rgba(77,140,255,.36), transparent 55%), radial-gradient(circle at 25% 25%, rgba(255,143,92,.3), transparent 55%), #0c0c0c;}
   .tag{font-size:12px; color:var(--brand-blue); font-weight:600; margin-bottom:8px;}
+  .case-link{font-size:13px; font-weight:600; color:var(--brand-blue); display:inline-block; margin-top:10px;}
+  .case-link:hover{text-decoration:underline;}
+
   .project-card h3{font-size:18px; font-weight:700; margin-bottom:10px; line-height:1.4;}
   .project-card p{font-size:14px; color:var(--dark-ink-soft); line-height:1.6;}
 
@@ -460,7 +470,6 @@
   <div class="hero-glow"></div>
   <div class="hero-glow-2"></div>
   <div class="wrap">
-    <div class="badge"><span class="dot"></span> Open for New Projects</div>
     <h1><span class="line">You bring the opportunity,</span><span class="line grad-text">we build the technology.</span></h1>
     <p>We turn ideas, business problems and AI opportunities into production-ready products, intelligent automations and custom software.</p>
     <p class="hero-subline">Your technical execution partner, from concept to launch.</p>
@@ -514,28 +523,29 @@
   <div class="wrap">
     <div class="project-grid">
       <div class="project-card">
-        <div class="project-visual visual-1"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="24" width="64" height="40" rx="8" stroke="white" stroke-width="2.2"/><circle cx="36" cy="44" r="2.6" fill="white"/><circle cx="50" cy="44" r="2.6" fill="white"/><circle cx="64" cy="44" r="2.6" fill="white"/><path d="M30 64 L36 76 L44 64" stroke="white" stroke-width="2.2" stroke-linejoin="round"/></svg></div>
-        <div class="tag">AI Agent · CRM</div>
-        <h3>AI Sales Copilot</h3>
-        <p>An agent that qualifies leads, drafts follow-ups and books meetings automatically.</p>
-      </div>
-      <div class="project-card">
-        <div class="project-visual visual-2"><svg viewBox="0 0 100 100" fill="none"><rect x="30" y="18" width="34" height="46" rx="4" stroke="white" stroke-width="2.2"/><line x1="37" y1="30" x2="57" y2="30" stroke="white" stroke-width="2"/><line x1="37" y1="38" x2="57" y2="38" stroke="white" stroke-width="2"/><line x1="37" y1="46" x2="50" y2="46" stroke="white" stroke-width="2"/><circle cx="64" cy="66" r="10" stroke="white" stroke-width="2.2"/><line x1="71.5" y1="73.5" x2="80" y2="82" stroke="white" stroke-width="2.4" stroke-linecap="round"/></svg></div>
-        <div class="tag">AI Product · RAG</div>
-        <h3>Document Intelligence Engine</h3>
-        <p>Turns thousands of PDFs into instant, searchable answers.</p>
-      </div>
-      <div class="project-card">
         <div class="project-visual visual-3"><svg viewBox="0 0 100 100" fill="none"><circle cx="28" cy="32" r="9" stroke="white" stroke-width="2.2"/><circle cx="76" cy="26" r="9" stroke="white" stroke-width="2.2"/><circle cx="52" cy="72" r="9" stroke="white" stroke-width="2.2"/><path d="M36 34 L68 27" stroke="white" stroke-width="2" stroke-dasharray="3 5"/><path d="M72 34 L56 64" stroke="white" stroke-width="2" stroke-dasharray="3 5"/><path d="M45 68 L34 40" stroke="white" stroke-width="2" stroke-dasharray="3 5"/></svg></div>
         <div class="tag">Automation · Workflows</div>
-        <h3>Ops Automation Suite</h3>
-        <p>Connects CRM, email and calendar into one self-running pipeline.</p>
+        <h3>Lead Routing Automation for a Growing Service Business</h3>
+        <p>Every inbound lead was being read, tagged and forwarded to the right person by hand, costing the founder close to two hours a day. We built an automation that reads new leads, classifies them, updates the CRM and notifies the right teammate instantly.</p>
       </div>
       <div class="project-card">
-        <div class="project-visual visual-4"><svg viewBox="0 0 100 100" fill="none"><rect x="42" y="20" width="16" height="30" rx="8" stroke="white" stroke-width="2.2"/><path d="M30 46a20 20 0 0 0 40 0" stroke="white" stroke-width="2.2" stroke-linecap="round"/><line x1="50" y1="66" x2="50" y2="78" stroke="white" stroke-width="2.2"/><line x1="40" y1="78" x2="60" y2="78" stroke="white" stroke-width="2.2" stroke-linecap="round"/></svg></div>
-        <div class="tag">Voice AI</div>
-        <h3>AI Voice Concierge</h3>
-        <p>Answers calls, understands intent, and routes or books automatically.</p>
+        <div class="project-visual visual-2"><svg viewBox="0 0 100 100" fill="none"><path d="M38 40 h24 l4 34 a5 5 0 0 1 -5 5 H39 a5 5 0 0 1 -5 -5 Z" stroke="white" stroke-width="2.2" stroke-linejoin="round"/><path d="M42 40 v-6 a8 8 0 0 1 16 0 v6" stroke="white" stroke-width="2.2" stroke-linecap="round"/><line x1="44" y1="50" x2="56" y2="50" stroke="white" stroke-width="2"/></svg></div>
+        <div class="tag">Shopify · E-commerce</div>
+        <h3>Shopify Storefront Rebuild for a D2C Brand</h3>
+        <p>Slow load times and a clunky checkout were quietly costing a growing D2C brand real sales. We rebuilt their Shopify theme and checkout flow for speed, mobile conversion and a cleaner buying experience.</p>
+      </div>
+      <div class="project-card">
+        <div class="project-visual visual-4"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="26" width="64" height="46" rx="5" stroke="white" stroke-width="2.2"/><line x1="18" y1="38" x2="82" y2="38" stroke="white" stroke-width="2"/><circle cx="26" cy="32" r="1.8" fill="white"/><circle cx="33" cy="32" r="1.8" fill="white"/><circle cx="40" cy="32" r="1.8" fill="white"/><path d="M32 56 L42 48 L32 40" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><line x1="50" y1="56" x2="66" y2="56" stroke="white" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <div class="tag">Custom Software · MVPs</div>
+        <h3>30+ Custom MVPs Shipped for Founders</h3>
+        <p>From first-time founders to repeat operators, we've built more than 30 custom MVPs, dashboards and internal tools, each tailored to how that specific business actually runs, not a generic template.</p>
+        <a href="#" class="case-link">View live examples →</a>
+      </div>
+      <div class="project-card">
+        <div class="project-visual visual-1"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="24" width="64" height="40" rx="8" stroke="white" stroke-width="2.2"/><circle cx="36" cy="44" r="2.6" fill="white"/><circle cx="50" cy="44" r="2.6" fill="white"/><circle cx="64" cy="44" r="2.6" fill="white"/><path d="M30 64 L36 76 L44 64" stroke="white" stroke-width="2.2" stroke-linejoin="round"/></svg></div>
+        <div class="tag">AI Agent · Support</div>
+        <h3>AI Support Agent Trained on Product Docs</h3>
+        <p>A SaaS team was drowning in repetitive support tickets. We built an AI agent trained on their docs and help center that resolves most common questions instantly, before a human ever has to step in.</p>
       </div>
     </div>
     <div style="text-align:center; margin-top:44px;">

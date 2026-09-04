@@ -65,32 +65,39 @@
 
   .page-head{padding:80px 0 0; text-align:center;}
   .page-head h1{font-size:clamp(32px,5vw,48px); font-weight:800; letter-spacing:-.02em; margin-bottom:14px;}
-  .page-head p{color:var(--ink-soft); font-size:15.5px; max-width:520px; margin:0 auto;}
+  .page-head p{color:var(--ink-soft); font-size:15.5px; max-width:640px; margin:0 auto;}
 
   .blog-band{
-    background:var(--bg); padding:44px 0; position:relative; overflow:hidden;
-    background-image:radial-gradient(rgba(255,255,255,.09) 1px, transparent 1px);
-    background-size:16px 16px;
+    background:var(--bg); padding:40px 0 8px; position:relative; overflow:hidden;
   }
   .filter-row{display:flex; gap:10px; justify-content:center; flex-wrap:wrap; position:relative; z-index:1;}
   .filter-pill{
-    background:var(--bg-soft); border:1px solid var(--line); color:#fff;
+    background:transparent; border:1px solid var(--line); color:var(--ink-soft);
     padding:9px 18px; border-radius:999px; font-size:13.5px; font-weight:500;
     cursor:pointer; transition:background .2s, border-color .2s, color .2s;
   }
-  .filter-pill:hover{border-color:var(--brand-blue);}
-  .filter-pill.active{background:var(--brand-blue); color:#071224; border-color:var(--brand-blue);}
+  .filter-pill:hover{border-color:var(--brand-blue); color:var(--ink);}
+  .filter-pill.active{background:var(--brand-grad); color:#0a0a0a; border-color:transparent; font-weight:700;}
 
-  .blog-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px; padding:56px 0 120px;}
+  .blog-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px; padding:40px 0 120px;}
   @media (max-width:900px){.blog-grid{grid-template-columns:repeat(2,1fr);}}
   @media (max-width:600px){.blog-grid{grid-template-columns:1fr;}}
-  .blog-card{background:var(--bg-soft); border:1px solid var(--line); border-radius:12px; overflow:hidden; display:flex; flex-direction:column; transition:border-color .3s ease, transform .3s ease;}
+  .blog-card{background:var(--bg-soft); border:1px solid var(--line); border-radius:14px; overflow:hidden; display:flex; flex-direction:column; transition:border-color .3s ease, transform .3s ease;}
   .blog-card:hover{border-color:var(--brand-blue); transform:translateY(-4px);}
-  .blog-thumb{height:170px; background:linear-gradient(135deg,#1b1b1b,#050505);}
-  .blog-card-body{padding:22px 22px 26px;}
+  .blog-card-head{
+    position:relative; min-height:150px; padding:24px 22px; display:flex; align-items:flex-end;
+    background:var(--brand-grad); overflow:hidden;
+  }
+  .blog-card-head::before{
+    content:''; position:absolute; top:-40%; left:-15%; width:75%; height:150%;
+    background:radial-gradient(circle, rgba(255,255,255,.4), transparent 60%);
+    pointer-events:none;
+  }
+  .blog-card-head h3{position:relative; z-index:1; font-size:18px; font-weight:800; line-height:1.32; color:#0a0a0a;}
+  .blog-card-body{padding:18px 22px 26px;}
   .blog-tag{display:inline-block; font-size:12px; font-weight:600; padding:5px 12px; border-radius:999px; background:var(--bg); color:var(--ink-soft); margin-bottom:14px;}
   .blog-tag.accent{background:rgba(255,143,92,.16); color:var(--brand-orange);}
-  .blog-card h3{font-size:17px; font-weight:700; margin-bottom:8px; line-height:1.4; color:var(--ink);}
+  .blog-tag.blue{background:rgba(77,140,255,.16); color:var(--brand-blue);}
   .blog-card p{font-size:13.5px; color:var(--ink-soft); line-height:1.5;}
 
   footer{padding:40px 0; border-top:1px solid var(--line); text-align:center; color:var(--ink-soft); font-size:13px;}
@@ -123,51 +130,91 @@
 
 <div class="page-head wrap">
   <h1>From the blog.</h1>
-  <p>Notes on building AI products, MVPs and automation for founders and growing teams.</p>
+  <p>Practical workflow breakdowns, build logs and implementation guides on automation, AI agents, custom software and websites, straight from the projects we're building.</p>
+</div>
+
+<div class="blog-band wrap">
+  <div class="filter-row" id="blogFilters">
+    <button class="filter-pill active" data-filter="all">All</button>
+    <button class="filter-pill" data-filter="automation">Automation</button>
+    <button class="filter-pill" data-filter="agents">AI Agents</button>
+    <button class="filter-pill" data-filter="mvp">Custom Software &amp; MVPs</button>
+    <button class="filter-pill" data-filter="web">Websites &amp; E-commerce</button>
+  </div>
 </div>
 
 <div class="wrap">
   <div class="blog-grid" id="blogGrid">
-    <article class="blog-card">
-      <div class="blog-thumb"></div>
+    <a class="blog-card" href="posts/automating-lead-routing-n8n-openai.html" data-category="automation">
+      <div class="blog-card-head"><h3>Automating Lead Routing with n8n and OpenAI: A Full Breakdown</h3></div>
       <div class="blog-card-body">
-        <span class="blog-tag accent">Insights</span>
-        <h3>Why most AI MVPs never make it past the demo</h3>
-        <p>Common reasons AI prototypes stall before reaching real users.</p>
+        <span class="blog-tag accent">Automation</span>
+        <p>How we built an automation that reads, classifies and routes inbound leads instantly, and how you can build something similar for your own business.</p>
       </div>
-    </article>
-    <article class="blog-card">
-      <div class="blog-thumb"></div>
+    </a>
+    <a class="blog-card" href="posts/n8n-vs-zapier-vs-make.html" data-category="automation">
+      <div class="blog-card-head"><h3>n8n vs. Zapier vs. Make: Picking the Right Tool for Your Workflow</h3></div>
       <div class="blog-card-body">
-        <span class="blog-tag">Insights</span>
-        <h3>What it actually costs to build an AI MVP in 2026</h3>
-        <p>A realistic breakdown of budgets, timelines, and what actually drives the price up or down.</p>
+        <span class="blog-tag accent">Automation</span>
+        <p>A practical comparison for founders deciding where to build their first automation, based on cost, flexibility and how much custom logic you actually need.</p>
       </div>
-    </article>
-    <article class="blog-card">
-      <div class="blog-thumb"></div>
+    </a>
+    <a class="blog-card" href="posts/manual-task-to-automation.html" data-category="automation">
+      <div class="blog-card-head"><h3>How to Turn a Manual Weekly Task Into a 5-Minute Automation</h3></div>
       <div class="blog-card-body">
-        <span class="blog-tag">Insights</span>
-        <h3>5 questions to ask before hiring an AI development partner</h3>
-        <p>What to check before you hand off your idea, your data, and your budget.</p>
+        <span class="blog-tag accent">Automation</span>
+        <p>A simple framework for spotting which repetitive tasks in your business are worth automating first, and which ones aren't yet.</p>
       </div>
-    </article>
-    <article class="blog-card">
-      <div class="blog-thumb"></div>
+    </a>
+    <a class="blog-card" href="posts/ai-agents-vs-automation.html" data-category="agents">
+      <div class="blog-card-head"><h3>AI Agents vs. Automation: What's Actually the Difference</h3></div>
       <div class="blog-card-body">
-        <span class="blog-tag">Insights</span>
-        <h3>AI agents vs. automation: what's actually the difference</h3>
+        <span class="blog-tag">AI Agents</span>
         <p>Two terms that get used interchangeably, and how to tell which one your business actually needs.</p>
       </div>
-    </article>
-    <article class="blog-card">
-      <div class="blog-thumb"></div>
+    </a>
+    <a class="blog-card" href="posts/is-your-business-ready-for-ai-automation.html" data-category="agents">
+      <div class="blog-card-head"><h3>How to Know if Your Business is Ready for AI Automation</h3></div>
       <div class="blog-card-body">
-        <span class="blog-tag">Insights</span>
-        <h3>How to know if your business is ready for AI automation</h3>
+        <span class="blog-tag">AI Agents</span>
         <p>The signs it's time to automate a workflow, and the signs it's still too early.</p>
       </div>
-    </article>
+    </a>
+    <a class="blog-card" href="posts/why-ai-mvps-never-ship.html" data-category="mvp">
+      <div class="blog-card-head"><h3>Why Most AI MVPs Never Make It Past the Demo</h3></div>
+      <div class="blog-card-body">
+        <span class="blog-tag blue">Custom Software & MVPs</span>
+        <p>Common reasons AI prototypes stall before reaching real users, and what separates the ones that ship.</p>
+      </div>
+    </a>
+    <a class="blog-card" href="posts/cost-to-build-ai-mvp-2026.html" data-category="mvp">
+      <div class="blog-card-head"><h3>What It Actually Costs to Build an AI MVP in 2026</h3></div>
+      <div class="blog-card-body">
+        <span class="blog-tag blue">Custom Software & MVPs</span>
+        <p>A realistic breakdown of budgets, timelines, and what actually drives the price up or down.</p>
+      </div>
+    </a>
+    <a class="blog-card" href="posts/questions-before-hiring-ai-dev-partner.html" data-category="mvp">
+      <div class="blog-card-head"><h3>5 Questions to Ask Before Hiring an AI Development Partner</h3></div>
+      <div class="blog-card-body">
+        <span class="blog-tag blue">Custom Software & MVPs</span>
+        <p>What to check before you hand off your idea, your data and your budget.</p>
+      </div>
+    </a>
+    <a class="blog-card" href="posts/shopify-speed-optimization.html" data-category="web">
+      <div class="blog-card-head"><h3>Shopify Speed Optimization: What Actually Moves the Needle</h3></div>
+      <div class="blog-card-body">
+        <span class="blog-tag">Websites & E-commerce</span>
+        <p>Slow load times quietly cost D2C brands real revenue. Here's what actually improves speed and conversion on a Shopify storefront.</p>
+      </div>
+    </a>
+    <a class="blog-card" href="posts/website-rebuild-vs-patch.html" data-category="web">
+      <div class="blog-card-head"><h3>When to Rebuild vs. Patch Your Website</h3></div>
+      <div class="blog-card-body">
+        <span class="blog-tag">Websites & E-commerce</span>
+        <p>Not every slow or dated website needs a full rebuild. Here's how to tell which one you actually need.</p>
+      </div>
+    </a>
   </div>
 </div>
 
@@ -209,5 +256,20 @@
   </div>
 </footer>
 
+<script>
+  var filterBtns = document.querySelectorAll('#blogFilters .filter-pill');
+  var cards = document.querySelectorAll('#blogGrid .blog-card');
+  filterBtns.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      filterBtns.forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.getAttribute('data-filter');
+      cards.forEach(function(card){
+        var show = (f === 'all') || (card.getAttribute('data-category') === f);
+        card.style.display = show ? '' : 'none';
+      });
+    });
+  });
+</script>
 </body>
 </html>

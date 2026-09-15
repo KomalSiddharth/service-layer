@@ -690,24 +690,8 @@
   </div>
   <div class="wrap">
     <div class="contact-columns">
-      <div class="contact-panel">
-        <form id="qualForm">
-          <div class="field"><label>Name</label><input type="text" name="name" required></div>
-          <div class="field"><label>Email</label><input type="email" name="email" required></div>
-          <div class="field"><label>What are you looking for?</label>
-            <select name="looking">
-              <option>AI Product</option><option>AI Agent</option><option>Automation</option>
-              <option>SaaS / MVP</option><option>Custom Software</option><option>Voice AI</option>
-              <option>AI Integration</option><option>Technical Partnership</option><option>Not sure yet</option>
-            </select>
-          </div>
-          <div class="field"><label>Tell us about the opportunity</label><textarea name="details" rows="4" placeholder="What are you trying to build, automate or improve?"></textarea></div>
-          <button type="submit" class="btn btn-light" style="width:100%; justify-content:center;">Explore the Opportunity →</button>
-        </form>
-        <div class="success-box" id="successBox">
-          <h3 style="font-size:19px; font-weight:700;">Thanks, we've received your opportunity.</h3>
-          <p>We'll review the details and get back to you.</p>
-        </div>
+      <div class="contact-panel" style="padding:24px;">
+        <iframe data-tally-src="https://tally.so/embed/0QKoP9?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="500" frameborder="0" marginheight="0" marginwidth="0" title="Tell us what you're building."></iframe>
       </div>
 
       <div class="direct-contact">
@@ -834,29 +818,13 @@
     });
   });
 
-  // Google Forms integration: submissions are also sent to your Google Form's responses.
-  const GOOGLE_FORM_ACTION = 'https://docs.google.com/forms/d/e/1FAIpQLScIj8-9BJlqxHhbNL6tGWjKElc1kNPKZ04aRN48Bj1C3Ad9JA/formResponse';
-  const GOOGLE_FORM_ENTRY_IDS = {
-    name:    'entry.653379976',
-    email:   'entry.2097975317',
-    looking: 'entry.2137013806',
-    details: 'entry.1184140993'
-  };
-  const form = document.getElementById('qualForm');
-  form.addEventListener('submit', (e)=>{
-    e.preventDefault();
-    try{
-      const fd = new FormData(form);
-      const params = new URLSearchParams();
-      params.append(GOOGLE_FORM_ENTRY_IDS.name, fd.get('name') || '');
-      params.append(GOOGLE_FORM_ENTRY_IDS.email, fd.get('email') || '');
-      params.append(GOOGLE_FORM_ENTRY_IDS.looking, fd.get('looking') || '');
-      params.append(GOOGLE_FORM_ENTRY_IDS.details, fd.get('details') || '');
-      fetch(GOOGLE_FORM_ACTION, { method:'POST', mode:'no-cors', body: params });
-    }catch(err){ /* fail silently, don't block the on-page success state */ }
-    form.style.display = 'none';
-    document.getElementById('successBox').style.display = 'block';
-  });
+  // Tally form embed: loads and auto-sizes the iframe. Submissions land directly in your Tally dashboard.
+  (function(){
+    var s = document.createElement('script');
+    s.src = 'https://tally.so/widgets/embed.js';
+    s.onload = function(){ if (window.Tally) Tally.loadEmbeds(); };
+    document.body.appendChild(s);
+  })();
 
 // ---- case-study card hover video ----
 document.querySelectorAll('.project-visual[data-video]').forEach(function(box){
